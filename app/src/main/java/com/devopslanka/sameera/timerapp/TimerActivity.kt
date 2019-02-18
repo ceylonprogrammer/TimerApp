@@ -1,17 +1,17 @@
 package com.devopslanka.sameera.timerapp
 
+
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.devopslanka.sameera.timerapp.util.NotificationUtil
 import com.devopslanka.sameera.timerapp.util.PrefUtil
-
-
 import kotlinx.android.synthetic.main.activity_timer.*
 import kotlinx.android.synthetic.main.content_timer.*
 import java.util.*
@@ -85,7 +85,7 @@ class TimerActivity : AppCompatActivity() {
 
         removeAlarm(this)
 
-        //TODO:  hide notification
+        NotificationUtil.hideTimerNotification(this)
     }
 
     override fun onPause() {
@@ -94,9 +94,9 @@ class TimerActivity : AppCompatActivity() {
             timer.cancel()
             val wakeUpTime = setAlarm(this, nowSeconds, secondsRemaning)
 
-            //TODO: show notification
+            NotificationUtil.showTimerRunning(this, wakeUpTime)
         } else if (timerState == TimerState.Paused) {
-            //TODO: show notification
+            NotificationUtil.showTimerPaused(this)
         }
         PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this)
         PrefUtil.setSecondsRemaning(secondsRemaning, this)

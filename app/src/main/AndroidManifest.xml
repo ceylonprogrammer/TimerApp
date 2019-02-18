@@ -25,6 +25,17 @@
                 android:enabled="true"
                 android:exported="false">
         </receiver>
+        <receiver
+                android:name=".TimerNotificationActionReciver"
+                android:enabled="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="stop"/>
+                <action android:name="pause"/>
+                <action android:name="resume"/>
+                <action android:name="start"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
