@@ -54,5 +54,20 @@ class PrefUtil {
             editor.putLong(SECONDS_REMANING_ID, seconds)
             editor.apply()
         }
+
+        private const val ALARM_SET_TIME_ID = "com.devopslanka.sameera.timerapp.backgrounded_time"
+
+        fun getAlarmSetTime(context: Context): Long {
+            val preferances = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferances.getLong(ALARM_SET_TIME_ID, 0)
+
+
+        }
+
+        fun setAlarmSetTime(time: Long, context: Context) {
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(ALARM_SET_TIME_ID, time)
+            editor.apply()
+        }
     }
 }
