@@ -8,10 +8,12 @@ class PrefUtil {
     //    similar to static members in java or c#
     companion object {
 
+        private const val TIMER_LENGTH_ID = "com.devopslanka.sameera.timerapp.timer_length"
         fun getTimerLength(context: Context): Int {
-            //placeholder function it gonna return one minute
-            return 1
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferences.getInt(TIMER_LENGTH_ID, 10)
         }
+
 
         private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID = "com.devopslanka.sameera.timerapp.previous_timer_length"
 
